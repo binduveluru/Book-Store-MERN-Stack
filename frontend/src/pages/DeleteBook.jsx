@@ -11,10 +11,10 @@ const DeleteBook = () => {
   const { id } = useParams();
   const { enqueueSnackbar } = useSnackbar();
 
-  const handleDeleteBook = () => {
+  const handleDeleteBook = async () => {
     setLoading(true);
-    axios
-      .delete(`http://localhost:5555/books/${id}`)
+    await axios
+      .delete(`http://localhost:3005/books/${id}`)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Book Deleted successfully', { variant: 'success' });

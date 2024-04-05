@@ -4,7 +4,11 @@ import { Book } from '../models/bookModel.js';
 const router = express.Router();
 
 // Route for Save a new Book
+
 router.post('/', async (request, response) => {
+
+  // we use to the try method to iddentify the error 
+  
   try {
     if (
       !request.body.title ||
@@ -15,6 +19,7 @@ router.post('/', async (request, response) => {
         message: 'Send all required fields: title, author, publishYear',
       });
     }
+    // this data use to set the mongodb
     const newBook = {
       title: request.body.title,
       author: request.body.author,

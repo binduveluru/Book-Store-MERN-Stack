@@ -13,10 +13,10 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [showType, setShowType] = useState('table');
 
-  useEffect(() => {
+  useEffect(async () => {
     setLoading(true);
-    axios
-      .get('http://localhost:5555/books')
+    await axios
+      .get('http://localhost:3005/books')
       .then((response) => {
         setBooks(response.data.data);
         setLoading(false);
@@ -44,7 +44,7 @@ const Home = () => {
         </button>
       </div>
       <div className='flex justify-between items-center'>
-        <h1 className='text-3xl my-8'>Books List</h1>
+      <h1 className='text-3xl my-8 font-bold bg-blue-500 p-4'>Books List</h1>
         <Link to='/books/create'>
           <MdOutlineAddBox className='text-sky-800 text-4xl' />
         </Link>

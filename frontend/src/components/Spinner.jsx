@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 
 const Spinner = () => {
-  return (
-    <div className='animate-ping w-16 h-16 m-8 rounded-full bg-sky-600'></div>
-  )
-}
+  const [visible, setVisible] = useState(true);
 
-export default Spinner
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVisible(false);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return visible ? (
+    <div className='animate-spin w-16 h-16 m-8 rounded-full bg-sky-600'></div>
+  ) : null;
+};
+
+export default Spinner;

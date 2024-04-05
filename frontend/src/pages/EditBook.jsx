@@ -14,9 +14,9 @@ const EditBook = () => {
   const {id} = useParams();
   const { enqueueSnackbar } = useSnackbar();
 
-  useEffect(() => {
+  useEffect(async () => {
     setLoading(true);
-    axios.get(`http://localhost:5555/books/${id}`)
+    await axios.get(`http://localhost:3005/books/${id}`)
     .then((response) => {
         setAuthor(response.data.author);
         setPublishYear(response.data.publishYear)
@@ -29,15 +29,15 @@ const EditBook = () => {
       });
   }, [])
   
-  const handleEditBook = () => {
+  const handleEditBook = async () => {
     const data = {
       title,
       author,
       publishYear,
     };
     setLoading(true);
-    axios
-      .put(`http://localhost:5555/books/${id}`, data)
+    await axios
+      .put(`http://localhost:3005/books/${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Book Edited successfully', { variant: 'success' });

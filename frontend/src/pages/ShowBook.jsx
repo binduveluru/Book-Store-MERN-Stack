@@ -7,12 +7,12 @@ import Spinner from '../components/Spinner';
 const ShowBook = () => {
   const [book, setBook] = useState({});
   const [loading, setLoading] = useState(false);
-  const { id } = useParams();
+  const { id } = useParams();  // we use the "useParams" server values
 
-  useEffect(() => {
+  useEffect(async () => {
     setLoading(true);
-    axios
-      .get(`http://localhost:5555/books/${id}`)
+    await axios
+      .get(`http://localhost:3005/books/${id}`)
       .then((response) => {
         setBook(response.data);
         setLoading(false);
